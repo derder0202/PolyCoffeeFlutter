@@ -11,12 +11,12 @@ import 'package:polycoffee/pages/user/user_page.dart';
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
 
-  var _selectIndex = 0.obs;
+  final _selectIndex = 0.obs;
   final PageController _pageController = PageController();
 
   final listItem = <Widget>[
     UserPage(),
-    MenuPage(),
+    MenuPage(type: 0,),
     OrderingPage(),
     RevenuePage(),
   ];
@@ -24,37 +24,39 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (context, BoxConstraints constraints) {
-          return Stack(
-            children: [
-              const Positioned(
-                top: 0,
-                right: 0,
-                left: 0,
-                height: headerHeight,
-                child: MainHeader(),
-              ),
-              Positioned(
-                  top: headerHeight,
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, BoxConstraints constraints) {
+            return Stack(
+              children: [
+                Positioned(
+                  top: 0,
                   right: 0,
                   left: 0,
-                  height: constraints.maxHeight-headerHeight,
-                  child: PageView(
-                    controller: _pageController,
-                    children: listItem,
-                  ),
-              )
-            ],
-          );
-        }
+                  height: headerHeight,
+                  child: MainHeader(selectIndex: _selectIndex,),
+                ),
+                Positioned(
+                    top: headerHeight,
+                    right: 0,
+                    left: 0,
+                    height: constraints.maxHeight-headerHeight,
+                    child: PageView(
+                      controller: _pageController,
+                      children: listItem,
+                    ),
+                )
+              ],
+            );
+          }
+        ),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: Obx(()=>Container(
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20))
+            borderRadius: BorderRadius.all(Radius.circular(20))
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
           child: BottomNavigationBar(
             backgroundColor: Colors.brown[600],
             items: const [
@@ -66,11 +68,12 @@ class MainPage extends StatelessWidget {
             currentIndex: _selectIndex.value,
             onTap: (index){
               _pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.easeOut);
+              _selectIndex.value = index;
             },
             type: BottomNavigationBarType.fixed,
           ),
         ),
-      ),
+      ),)
     );
   }
 }

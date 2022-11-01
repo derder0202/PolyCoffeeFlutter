@@ -14,8 +14,16 @@ class MenuController extends GetxController{
     Product("4", "Nuoc chanh", 50000, 1, "assets/images/cafe-den.jpg"),
   ];
 
+  List<Product> getProductByType(int type){
+     return demo_products.where((element) => element.type == type).toList();
+  }
+
   void addProduct(Product product){
     demo_products.add(product);
+    update();
+  }
+  void updateProduct(Product product){
+    demo_products[int.parse(product.id)] = product;
     update();
   }
 

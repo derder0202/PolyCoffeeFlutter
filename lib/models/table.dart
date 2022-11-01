@@ -1,6 +1,0 @@
-
-class Ban{
-  //String id;
-
-
-}

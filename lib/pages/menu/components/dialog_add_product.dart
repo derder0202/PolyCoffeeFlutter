@@ -62,7 +62,9 @@ class DialogAddProduct extends StatelessWidget {
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[600]),
                       onPressed: (){
-                          MenuController.to.addProduct(Product(MenuController.to.demo_products.length.toString(), _name.text, int.parse(_price.text), 2, "assets/images/cafe-nau.jpg"));
+                          product == null?
+                          MenuController.to.addProduct(Product(MenuController.to.demo_products.length.toString(), _name.text, int.parse(_price.text), 2, "assets/images/cafe-nau.jpg")) :
+                          MenuController.to.updateProduct(Product(product!.id.toString(), _name.text, int.parse(_price.text), product!.type, "assets/images/cafe-nau.jpg"));
                           Get.back();
                       },
                       child: Padding(padding: EdgeInsets.all(10),child: Text(product == null ?"THÊM":"SỬA",style: TextStyle(fontSize: 15),)))

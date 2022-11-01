@@ -5,6 +5,8 @@ import 'package:polycoffee/pages/main/main_page.dart';
 void main() {
   runApp(GetMaterialApp(
     home: MainPage(),
-    theme: ThemeData.light(),
+    theme: ThemeData(
+      primaryColor: Colors.brown[600],
+    ),
   ));
 }

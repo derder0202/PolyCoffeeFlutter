@@ -44,6 +44,7 @@ class MainPage extends StatelessWidget {
                     child: PageView(
                       controller: _pageController,
                       children: listItem,
+                      onPageChanged: (index){_selectIndex.value = index;},
                     ),
                 )
               ],
@@ -67,7 +68,7 @@ class MainPage extends StatelessWidget {
             ],
             currentIndex: _selectIndex.value,
             onTap: (index){
-              _pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.easeOut);
+              _pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.linear);
               _selectIndex.value = index;
             },
             type: BottomNavigationBarType.fixed,

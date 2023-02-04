@@ -24,13 +24,13 @@ class CardDetailsView extends StatelessWidget {
                   .of(context)
                   .textTheme
                   .headline6),
-              ...List.generate(tableController.getTable(int.parse(table.id)).listProductItem.length, (index) =>
+              ...List.generate(table.listProductItem.length, (index) =>
                   CardDetailViewCard(
-                    productItem: tableController.getTable(int.parse(table.id)).listProductItem[index], table:tableController.getTable(int.parse(table.id)),)),
+                    productItem: table.listProductItem[index], table:table,)),
               const SizedBox(height: defaultPadding),
               SizedBox(
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(padding: EdgeInsets.all(15),
+                  style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(15),
                       backgroundColor: Colors.brown[600]),
                   onPressed: () {},
                   child: const Text("ĐÃ THANH TOÁN"),

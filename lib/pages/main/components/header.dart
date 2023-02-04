@@ -37,7 +37,7 @@ class MainHeader extends StatelessWidget {
             Obx(() => Row(
               children: [
                 // Them
-                selectIndex!=3?GestureDetector(
+                selectIndex!=3 ?GestureDetector(
                   onTap: (){
                     switch(selectIndex.value){
                       case 0:
@@ -52,8 +52,8 @@ class MainHeader extends StatelessWidget {
                         // );
                       Get.bottomSheet(
                           DialogAddProduct(),
-                          enterBottomSheetDuration: Duration(milliseconds: 400),
-                          exitBottomSheetDuration: Duration(milliseconds: 400),
+                          enterBottomSheetDuration: panelTransition,
+                          exitBottomSheetDuration: panelTransition,
                           backgroundColor: Colors.brown[200]
                       );
                         break;

@@ -7,4 +7,5 @@ class OrderTable{
   String orderStaff;
 
   OrderTable(this.id, this.state, this.listProductItem,this.orderStaff);
+
 }

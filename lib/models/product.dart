@@ -6,5 +6,6 @@ class Product{
 
   Product(this.id, this.name, this.price, this.type, this.img);
 
+
 }
 

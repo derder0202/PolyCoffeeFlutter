@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:polycoffee/constants.dart';
 import 'package:polycoffee/models/product.dart';
 import 'package:polycoffee/pages/menu/menu_controller.dart';
 
@@ -25,7 +24,7 @@ class DialogAddProduct extends StatelessWidget {
       builder: (context, constraints) {
         return SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -63,11 +62,11 @@ class DialogAddProduct extends StatelessWidget {
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[600]),
                       onPressed: (){
                           product == null?
-                          MenuController.to.addProduct(Product(MenuController.to.demo_products.length.toString(), _name.text, int.parse(_price.text), 2, "assets/images/cafe-nau.jpg")) :
-                          MenuController.to.updateProduct(Product(product!.id.toString(), _name.text, int.parse(_price.text), product!.type, "assets/images/cafe-nau.jpg"));
+                          MenuControllerGet.to.addProduct(Product(MenuControllerGet.to.demoProducts.length.toString(), _name.text, int.parse(_price.text), 2, "assets/images/cafe-nau.jpg")) :
+                          MenuControllerGet.to.updateProduct(Product(product!.id.toString(), _name.text, int.parse(_price.text), product!.type, "assets/images/cafe-nau.jpg"));
                           Get.back();
                       },
-                      child: Padding(padding: EdgeInsets.all(10),child: Text(product == null ?"THÊM":"SỬA",style: TextStyle(fontSize: 15),)))
+                      child: Padding(padding: const EdgeInsets.all(10),child: Text(product == null ?"THÊM":"SỬA",style: const TextStyle(fontSize: 15),)))
                 ],
               ),
             )

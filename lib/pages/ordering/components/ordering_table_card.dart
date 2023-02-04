@@ -23,7 +23,7 @@ class OrderingTableCard extends StatelessWidget {
                         opacity: animation,
                         child:  Scaffold(
                           appBar: AppBar(
-                            title: const Text("Ordering",style: TextStyle(fontWeight: FontWeight.w600),),
+                            title: Text("Table ${int.parse(table.id)+1}",style: TextStyle(fontWeight: FontWeight.w600),),
                             backgroundColor: Colors.brown[700],
                           ),
                           body:  MenuPage(type: 1,table: table,),

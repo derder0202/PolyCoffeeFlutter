@@ -19,11 +19,11 @@ class ProductCard extends StatelessWidget {
           child: Slidable(
             enabled: enable,
           endActionPane: ActionPane(
-              motion: ScrollMotion(),
+              motion: const ScrollMotion(),
               children: [
                 SlidableAction(
                     onPressed: (context){editAction();},
-                    backgroundColor: Color(0xFF0392CF),
+                    backgroundColor: const Color(0xFF0392CF),
                     foregroundColor: Colors.white,
                     icon: Icons.edit,
                     label: 'Sửa',
@@ -62,7 +62,7 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

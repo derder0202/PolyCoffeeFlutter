@@ -16,15 +16,15 @@ class CardDetailViewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Slidable(
         endActionPane: ActionPane(
             extentRatio: 0.2,
-            motion: ScrollMotion(),
+            motion: const ScrollMotion(),
             children: [
               SlidableAction(
                 onPressed: (contextAction){
-                    TableController.to.removeQuantityProductOrdering(productItem, int.parse(table.id));
+                    TableController.to.removeQuantityProductOrdering(productItem, table);
                    print(TableController.to.listTable.elementAt(int.parse(table.id)).listProductItem.length);
                 },
                 backgroundColor: defaultBgColor,

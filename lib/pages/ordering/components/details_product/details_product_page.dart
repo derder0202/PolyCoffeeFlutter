@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 import 'package:polycoffee/constants.dart';
 import 'package:polycoffee/models/order_table.dart';
 import 'package:polycoffee/models/product.dart';
-import 'package:polycoffee/models/product_item.dart';
 import 'package:polycoffee/pages/menu/menu_animation_controller.dart';
-import 'package:polycoffee/pages/menu/menu_controller.dart';
 import 'package:polycoffee/pages/ordering/components/details_product/price.dart';
 
 class DetailsProductPage extends StatelessWidget {
@@ -14,12 +12,12 @@ class DetailsProductPage extends StatelessWidget {
   final Product product;
   final OrderTable table;
   final MenuAnimationController menuController;
-  var number = 0.obs;
-  var cartTag = "".obs;
+  final number = 0.obs;
+  final cartTag = "".obs;
 
 
 
-  final TextEditingController _ghichu = TextEditingController();
+ // final TextEditingController _ghichu = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +79,7 @@ class DetailsProductPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                             child: Text(product.name,style: Theme.of(context).textTheme.headline6!.copyWith(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -117,7 +115,7 @@ class DetailsProductPage extends StatelessWidget {
                           Get.snackbar(
                               "Error",
                               "Số lượng phải lớn hơn 0",
-                              margin: EdgeInsets.all(20),
+                              margin: const EdgeInsets.all(20),
                           );
                         }
                       },

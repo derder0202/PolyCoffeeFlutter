@@ -17,7 +17,7 @@ class MenuPage extends StatelessWidget {
   MenuPage({Key? key, required this.type, this.table}) : super(key: key);
   final int type;
   final _selectindex = 0.obs;
-  final menuController = Get.put(MenuController());
+  final menuController = Get.put(MenuControllerGet());
   final controlerAnim = MenuAnimationController();
   final OrderTable? table;
 
@@ -30,8 +30,8 @@ class MenuPage extends StatelessWidget {
   void openDialogEdit(Product product){
     Get.bottomSheet(
         DialogAddProduct(product: product,),
-        enterBottomSheetDuration: Duration(milliseconds: 400),
-        exitBottomSheetDuration: Duration(milliseconds: 400),
+        enterBottomSheetDuration: panelTransition,
+        exitBottomSheetDuration: panelTransition,
         backgroundColor: Colors.brown[200]
     );
   }
@@ -49,6 +49,7 @@ class MenuPage extends StatelessWidget {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -64,7 +65,7 @@ class MenuPage extends StatelessWidget {
                       children: [
                         //tabbar
                         AnimatedPositioned(
-                          duration: Duration(milliseconds: 400),
+                          duration: panelTransition,
                           top: controlerAnim.state == MenuAnimationState.normal? 0 : -50,
                           right: 0,
                           left: 0,
@@ -92,7 +93,7 @@ class MenuPage extends StatelessWidget {
 
                         //cart gio hang
                         type==1?AnimatedPositioned(
-                            duration: Duration(milliseconds: 400),
+                            duration: panelTransition,
                             bottom: 0,
                             left: 0,
                             right: 0,
@@ -103,7 +104,7 @@ class MenuPage extends StatelessWidget {
                                 controlerAnim.changeTo(MenuAnimationState.cart);
                               },
                               child: Container(
-                                color: Color(0xFFEAEAEA),
+                                color: const Color(0xFFEAEAEA),
                                 alignment: Alignment.topLeft,
                                 child: AnimatedSwitcher(
                                     duration: panelTransition,
@@ -115,19 +116,19 @@ class MenuPage extends StatelessWidget {
                         ):Container(),
 
                         //gridview
-                        GetBuilder<MenuController>(
+                        GetBuilder<MenuControllerGet>(
                           builder: (menuController) {
                             return AnimatedPositioned(
-                                duration: Duration(milliseconds: 400),
+                                duration: const Duration(milliseconds: 400),
                                 right: 0,
                                 left: 0,
                                 top: controlerAnim.state == MenuAnimationState.normal? 50: -(constraints.maxHeight - cartBarHeight*2 - 50),
                                 height: constraints.maxHeight-50-cartBarHeight,
-                                child: Obx(()=> menuController.demo_products.where((element) => element.type == _selectindex.value).isNotEmpty?
+                                child: Obx(()=> menuController.demoProducts.where((element) => element.type == _selectindex.value).isNotEmpty?
                                     Padding(
                                       padding: const EdgeInsets.all(10),
                                       child: GridView.builder(
-                                        itemCount: menuController.demo_products.where((element) => element.type == _selectindex.value).length,
+                                        itemCount: menuController.demoProducts.where((element) => element.type == _selectindex.value).length,
                                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 1,
                                           childAspectRatio: 3,
@@ -135,7 +136,7 @@ class MenuPage extends StatelessWidget {
                                           crossAxisSpacing: defaultPadding,
                                         ),
                                         itemBuilder: (context,index) => ProductCard(
-                                          product: menuController.demo_products.where((element) => element.type == _selectindex.value).elementAt(index),
+                                          product: menuController.demoProducts.where((element) => element.type == _selectindex.value).elementAt(index),
                                           press: type == 1? ()=>openDialogOrdering(menuController.getProductByType(_selectindex.value)[index],context) :(){},
                                           editAction:  type == 0? ()=>openDialogEdit(menuController.getProductByType(_selectindex.value)[index]) :(){},
                                           removeAction: () {  }, enable: type==0?true:false,

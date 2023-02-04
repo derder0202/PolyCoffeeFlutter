@@ -22,12 +22,18 @@ class TableController extends GetxController{
     return listTable[id];
   }
 
-  void removeQuantityProductOrdering(ProductItem productItem, int indexTable){
-      if(productItem.quantity == 1){
-          listTable[indexTable].listProductItem.remove(productItem);
-      } else if(productItem.quantity>1){
-        listTable[indexTable].listProductItem.firstWhere((element) => element.product.id == productItem.product.id).quantity--;
-      }
+  void removeQuantityProductOrdering(ProductItem productItem, OrderTable table){
+      // if(productItem.quantity == 1){
+      //     listTable[indexTable].listProductItem.remove(productItem);
+      // } else if(productItem.quantity>1){
+      //   listTable[indexTable].listProductItem.firstWhere((element) => element.product.id == productItem.product.id).quantity--;
+      // }
+    if(productItem.quantity == 1){
+      table.listProductItem.remove(productItem);
+    } else if(productItem.quantity>1){
+      //listTable[indexTable].listProductItem.firstWhere((element) => element.product.id == productItem.product.id).quantity--;
+      productItem.quantity--;
+    }
       update();
   }
 
